@@ -10,3 +10,16 @@ body{
 .purple-bg{
     background-color: #9305ff !important;
 }
+
+.menu-button{
+    display: inline-block;
+}
+
+@media screen and (max-width: 768px){
+    .menu-button{
+        text-align: center;
+        width: 100%;
+        display: block !important;
+        margin-bottom: 1em;
+    }
+}
