@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Confetti JS</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- font -->
+        <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
+        <!-- font awesome -->
+        <script src="https://kit.fontawesome.com/9122b51f87.js"></script>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <!-- index.css -->
+        <link rel="stylesheet" href="./index.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please upgrade your browser to improve your experience.</p>
+        <![endif]-->
+
+        <canvas id="confetti-canvas">
+            This browser does not suppoer canvas element.
+        </canvas>
+
+        <!-- github link -->
+        <div class="p-3 purple-bg h-100">
+            <a href="javascript:void(0);" id = "party-start" class="bg-white text-dark px-3 rounded py-2 mr-3">
+                Start the party <i class="fas fa-glass-cheers"></i>
+            </a>
+            <a href="https://www.github.com/lyyka/confetti.js" target="_blank" class="bg-white text-dark px-3 rounded py-2">
+                View on GitHub <i class="fab fa-github"></i>
+            </a>
+        </div>
+
+        <!-- welcome and about -->
+        <div class="container my-5">
+            <h1 class="text-center font-weight-bold mb-5">
+                Confetti.js
+            </h1>
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    <i class="fas fa-question-circle"></i> 
+                    About the library
+                </h4>
+                <p>
+                    This library enables you to throw confetti on yout website, and of course, it is open sourced and free to everyone
+                    who wants it! Cool, isn't it?
+                    <br />
+                    <br />
+                    It is made using Vanilla JS, so you are not required to acquire any additional plug ins, libraries or frameworks. It requires for a canvas HTML element to be specified as it uses canvas context to draw confetti and make a party. This was initially made for my <a href="http://lyyka.github.io/portfolio" target="_blank" class="purple-text">portfolio website</a> to fire up on my birthday!
+                </p>
+            </div>
+
+            <!-- initialization talk -->
+            <h1 class="text-center font-weight-bold mb-5">
+                Getting Started
+            </h1>
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    <i class="fas fa-cogs"></i>
+                    Initializing the party
+                </h4>
+                <p>
+                    You have control over most of the things here. You can set options and configure your confetti party. Options are sent to the party when the party is initialized, and we will look on how to do that later on. Now, we just wanna declare some options. We will dive in explanation for each particular option later on, stay tuned.
+                    <br />
+                    <br />
+                    <code class="purple-text">
+                        const options = {<br/>
+                            <span class="ml-3">id: "confetti-canvas",</span><br/>
+                            <span class="ml-3"></span>number: 200,</span><br />
+                            <span class="ml-3"></span>speed: 500,</span><br />
+                            <span class="ml-3"></span>wind: 250,</span><br />
+                            <span class="ml-3"></span>colors: ["red", "blue"],</span><br />
+                            <span class="ml-3"></span>shapes: ["triangle"],</span><br />
+                            <span class="ml-3"></span>fullscreen: true,</span><br/>
+                            <span class="ml-3"></span>removeAfterEnd: false</span><br />
+                            <span class="ml-3"></span>zIndex: 100,</span><br/>
+                            <span class="ml-3"></span>display: "block",</span><br/>
+                        };
+                    </code>
+                    <br />
+                    <br />
+                    Now that we have declared JSON variable that will represent our options, only thing left is to initalize our party:
+                    <br />
+                    <br />
+                    <code class="purple-text">
+                        const confetti_party = new ConfettiParty(options);
+                    </code>
+                    <br />
+                    <br />
+                    Now that our party is declared, we can start it using <span class="purple-text">start()</span> method:
+                    <br />
+                    <br />
+                    <code class="text-dark">
+                        confetti_party<span class="purple-text">.start()</span>;
+                    </code>
+                </p>
+            </div>
+
+            <!-- explaining options -->
+            <h1 class="text-center font-weight-bold mb-5">
+                Options in depth
+            </h1>
+
+            <!-- ID -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    id
+                </h4>
+                <p>
+                    This options is used to specify the ID attribute of canvas element you want your party to use.
+                    <br />
+                    <code class="text-dark">
+                        &lt;canvas <span class="purple-text">id="confetti_party"</span>&gt;&lt;/canvas&gt;
+                    </code>
+                </p>
+            </div>
+
+            <!-- Number -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    number
+                </h4>
+                <p>
+                    Specifies how much confetties to generate.
+                    <br />
+                    <span class="purple-text">Default: </span> 500
+                </p>
+            </div>
+
+            <!-- speed -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    speed
+                </h4>
+                <p>
+                    Specifies how fast should confetties fly. If the value is, let's say, 2500, confetties will fly by speed in range of 1250 to 3750.
+                    <br />
+                    The formula is <span class="purple-text">speed / 2</span> to <span class="purple-text">speed * 3 / 2</span>
+                    <br />
+                    <span class="purple-text">Default: </span> 2500
+                </p>
+            </div>
+
+            <!-- wind -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    wind
+                </h4>
+                <p>
+                    Specifies how fast should confetties be carried left or right by the wind. If the value is, let's say, 250, confetties will be carried by wind in range of 125 to
+                    375. Script randomly chooses if confetti will fly left or right.
+                    <br />
+                    The formula is <span class="purple-text">wind / 2</span> to <span class="purple-text">wind * 3 / 2</span>
+                    <br />
+                    <span class="purple-text">Default: </span> 250
+                </p>
+            </div>
+
+            <!-- colors -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    colors
+                </h4>
+                <p>
+                    An array representing colors for confetties. Each confetti is assigned a random color from the colors array.
+                    <br />
+                    <span class="purple-text">Default: </span> ["red", "lightgreen", "lightblue", "yellow"]
+                </p>
+            </div>
+
+            <!-- shapes -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    shapes
+                </h4>
+                <p>
+                    An array representing shapes for confetties. Each confetti is assigned a random shape from the shapes array. All CSS color values are available.
+                    <br />
+                    <span class="purple-text">Available: </span> rectangle, triangle, circle
+                    <br />
+                    <span class="purple-text">Default: </span> ["rectangle", "triangle", "circle"]
+                </p>
+            </div>
+
+            <!-- fullscreen -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    fullscreen
+                </h4>
+                <p>
+                    Boolean value indicating if the canvas should be full screen or not. The script will take window width and height and set for canvas position to be fixed and for canvas parent element to be relatively positioned so the fullscreen effect could be achieved.
+                    <br />
+                    <span class="purple-text">Available: </span> true, false
+                    <br />
+                    <span class="purple-text">Default: </span> false
+                </p>
+            </div>
+
+            <!-- removeAfterEnd -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    removeAfterEnd
+                </h4>
+                <p>
+                    Boolean value indicating if the canvas element should be hidden and sent to back when animation finishes. If this is true, display will be none and z-index property will be -1.
+                    <br />
+                    <span class="purple-text">Available: </span> true, false
+                    <br />
+                    <span class="purple-text">Default: </span> false
+                </p>
+            </div>
+
+            <!-- zIndex -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    zIndex
+                </h4>
+                <p>
+                    A number indicating which z-index property should the canvas element get when the party starts.
+                    <br />
+                    <span class="purple-text">Default: </span> 1
+                </p>
+            </div>
+
+            <!-- display -->
+            <div class="rounded shadow-sm border p-3 my-5">
+                <h4 class="mb-4 purple-text">
+                    display
+                </h4>
+                <p>
+                    String value indicating how to display the canvas when party starts.
+                    <br />
+                    <span class="purple-text">Available: </span> CSS values for display
+                    <br />
+                    <span class="purple-text">Default: </span> block
+                </p>
+            </div>
+        </div>
+        
+        <script src="./src/confetti.class.js"></script>
+        <script src="./src/party.class.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>

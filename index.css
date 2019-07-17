@@ -1,0 +1,12 @@
+body{
+    font-family: 'Literata', serif;
+}
+#confetti-canvas{
+    display: none;
+}
+.purple-text{
+    color: #9305ff !important;
+}
+.purple-bg{
+    background-color: #9305ff !important;
+}
