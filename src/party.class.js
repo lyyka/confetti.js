@@ -14,8 +14,10 @@ class ConfettiParty {
         if(options.fullscreen != undefined && options.fullscreen){
             this.dom_canvas.parentElement.style.position = "relative";            
             this.dom_canvas.style.position = "fixed";            
-            this.dom_canvas.width = document.body.clientWidth;
-            this.dom_canvas.height = document.body.clientHeight;
+            // this.dom_canvas.width = document.body.clientWidth;
+            // this.dom_canvas.height = document.body.clientHeight;
+            this.dom_canvas.width = window.innerWidth;
+            this.dom_canvas.height = window.innerHeight;
         }
 
         // get context
@@ -107,16 +109,18 @@ class ConfettiParty {
                 wind_force: this.getRandomInt(bottom_wind, top_wind)
             });
 
+            conf.id = i;
+
             // position the confetti
             conf.position(x, y);
 
-            // shoot!!!
+            // set it up
             conf.setUp();
 
             this.confetties.push(conf);
 
             x += 30;
-            if (x > document.body.clientWidth) {
+            if (x > this.dom_canvas.width) {
                 x = 10;
             }
         }
@@ -145,8 +149,11 @@ class ConfettiParty {
             const conf = this.confetties[i];
 
             // move!!!
-            conf.move();
+            if(!conf.isDone){
+                conf.move();
+            }
         }
+        // requestAnimationFrame(this.redraw);
     }
 
 }

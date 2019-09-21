@@ -9,8 +9,8 @@ let confetti_party = undefined;
         display: "block",
         shapes: ["triangle", "circle"],
         number: 500,
-        speed: 1500,
-        wind: 200,
+        speed: 150,
+        wind: 10,
         removeAfterEnd: true,
     };
 

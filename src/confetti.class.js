@@ -25,6 +25,8 @@ class Confetti {
         // interval for moving the confetti
         this.interval = null;
         this.isDone = false;
+
+        this.move = this.move.bind(this);
     }
 
     position(x, y) {
@@ -34,13 +36,17 @@ class Confetti {
 
     move() {
         // increase according to speed
-        this.y += this.speed / 1000;
-        this.angle += this.speed / 1000;
+        this.y += this.speed / 30;
+        this.angle += this.speed / 30;
 
         // point it to one direction
-        this.x += this.wind_force / 800;
+        const chance = this.party.getRandomInt(1, 1000);
+        if(chance == 1000){
+            this.wind_force *= -1;
+        }
+        this.x += this.wind_force / 80;
 
-        // shoot it again
+        // draw it again
         this.draw();
     }
 
@@ -58,19 +64,23 @@ class Confetti {
             this.x_width = Math.abs(Math.cos(this.angle) * this.width);
         }
 
-        this.interval = setInterval(this.party.redraw, 1);
+        this.interval = setInterval(this.party.redraw, 33);
+    }
+
+    isOut(){
+        return this.y >= this.party.dom_canvas.height ||
+            this.x + this.x_width <= 0 ||
+            this.x >= this.party.dom_canvas.width;
     }
 
     draw() {
-        if ((this.y >= this.party.dom_canvas.height ||
-            this.x + this.x_width <= 0 ||
-            this.x >= this.party.dom_canvas.width) && !this.isDone) {
-
+        if (this.isOut() && !this.isDone) {
+            // clearInterval(this.interval);
+            // this.interval = null;
             this.isDone = true;
             this.party.countDone();
-
         }
-        else {
+        else if(!this.isDone) {
             // save untraslated state
             this.canvas.save();
 
