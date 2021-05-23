@@ -154,7 +154,6 @@ class ConfettiParty {
     }
 
     redraw() {
-        console.log("redraw call");
         this.canvas.beginPath();
         this.canvas.clearRect(0, 0, this.dom_canvas.width, this.dom_canvas.height);
         this.canvas.stroke();
