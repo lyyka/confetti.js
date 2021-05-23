@@ -64,7 +64,7 @@ class Confetti {
             this.x_width = Math.abs(Math.cos(this.angle) * this.width);
         }
 
-        this.interval = setInterval(this.party.redraw, 33);
+        // this.interval = setInterval(this.party.redraw, 33);
     }
 
     isOut(){
@@ -88,7 +88,7 @@ class Confetti {
             this.canvas.beginPath();
 
             // translate for rotation
-            var rotate = false;
+            let rotate = false;
             if (this.shape == "rectangle") {
                 this.canvas.translate(this.x + this.width / 2, this.y + this.height / 2);
                 rotate = true;

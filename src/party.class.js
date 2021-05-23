@@ -34,6 +34,9 @@ class ConfettiParty {
     }
 
     start() {
+        // clear previous confetties
+        this.confetties = [];
+
         // the display property when the party starts
         if (this.options.display != undefined) {
             this.dom_canvas.style.display = this.options.display;
@@ -81,8 +84,8 @@ class ConfettiParty {
 
         // set confetti number and starting position
         const conf_number = this.options.number != undefined ? this.options.number : 500;
-        var x = 0;
-        var y = -300;
+        let x = 0;
+        let y = -300;
 
         // generate speed boundaries
         let speed = this.options.speed != undefined ? this.options.speed : 2500;
@@ -94,7 +97,7 @@ class ConfettiParty {
         let bottom_wind = wind / 2;
         let top_wind = wind * 3 / 2
 
-        for (var i = 1; i < conf_number + 1; i++) {
+        for (let i = 1; i < conf_number + 1; i++) {
             // get random color
             const rand_color = colors[this.getRandomInt(0, colors.length - 1)];
 
@@ -102,7 +105,7 @@ class ConfettiParty {
             const rand_shape = shapes[this.getRandomInt(0, shapes.length - 1)];
 
             // construct confetti
-            var conf = new Confetti(this, {
+            let conf = new Confetti(this, {
                 color: rand_color,
                 shape: rand_shape,
                 speed: this.getRandomInt(bottom_speed, top_speed),
@@ -115,7 +118,7 @@ class ConfettiParty {
             conf.position(x, y);
 
             // set it up
-            conf.setUp();
+            // conf.setUp();
 
             this.confetties.push(conf);
 
@@ -124,6 +127,12 @@ class ConfettiParty {
                 x = 10;
             }
         }
+
+        for(let i = 0; i < this.confetties.length; i++) {
+            this.confetties[i].setUp();
+        }
+
+        this.interval = setInterval(this.redraw, 33);
     }
 
     countDone() {
@@ -134,7 +143,10 @@ class ConfettiParty {
         this.done++;
 
         if (this.done == this.confetties.length) {
-            if(this.options.removeAfterEnd != undefined && this.options.removeAfterEnd){
+            clearInterval(this.interval);
+            this.interval = null;
+            this.done = null;
+            if(this.options.removeAfterEnd){
                 this.dom_canvas.style.display = "none";
                 this.dom_canvas.style.zIndex = "-1";
             }
@@ -142,10 +154,11 @@ class ConfettiParty {
     }
 
     redraw() {
+        console.log("redraw call");
         this.canvas.beginPath();
         this.canvas.clearRect(0, 0, this.dom_canvas.width, this.dom_canvas.height);
         this.canvas.stroke();
-        for (var i = 0; i < this.confetties.length; i++) {
+        for (let i = 0; i < this.confetties.length; i++) {
             const conf = this.confetties[i];
 
             // move!!!
